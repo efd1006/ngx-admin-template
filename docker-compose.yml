@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  web-dashboard:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    container_name: web-dashboard
+    # env_file:
+    #   - .env
+    environment:
+      - TZ=Asia/Manila
+    ports:
+      - "3000:80"
