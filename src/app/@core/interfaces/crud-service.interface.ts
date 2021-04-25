@@ -9,6 +9,6 @@ export interface CrudServiceInterface<T> {
 
   $all: (filter?: FilterModel, page?: number, limit?: number) => Observable<T[]>
   create: (item: T) => Observable<T>
-  get: (uuid: string) => Observable<T>
+  get: (uuid: string, filter?: FilterModel) => Observable<T>
   update: (uuid: string, item: T) => Observable<T>
 }

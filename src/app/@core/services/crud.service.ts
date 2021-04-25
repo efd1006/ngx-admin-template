@@ -57,8 +57,20 @@ export class CrudService<T> extends BaseService implements CrudServiceInterface<
     )
   }
 
-  get(uuid: string) {
-    return this.$get(`${this.urlEndpoint}/${uuid}`).pipe(
+  get(uuid: string, filter: FilterModel = null) {
+    let endpoint = this.urlEndpoint + '?'
+    if (filter != null) {
+      if (filter.relationship.length > 0) {
+        endpoint += `join=${filter.relationship.toString()}&`
+      }
+
+      if (filter.filters.length > 0) {
+        filter.filters.forEach(field => {
+          endpoint += `filter=${field.name}||${field.condition}||${field.value}&`
+        })
+      }
+    }
+    return this.$get(`${endpoint}/${uuid}`).pipe(
       map(res => res as T)
     )
   }
