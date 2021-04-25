@@ -35,10 +35,14 @@ export class CrudService<T> extends BaseService implements CrudServiceInterface<
       }
     }
 
+    if(sort != null) {
+      endpoint += `sort=${sort}&`
+    }
+
     if (page != null && typeof (page) === 'number') {
       endpoint += `page=${page}&limit=${limit}`
     }
-
+    
     return this.$get(endpoint).pipe(
       map(res => {
         if (res.hasOwnProperty('data')) {
