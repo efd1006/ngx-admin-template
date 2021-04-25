@@ -19,7 +19,7 @@ export class CrudService<T> extends BaseService implements CrudServiceInterface<
     super(httpClient, session)
   }
 
-  $all(filter: FilterModel = null, page = null, limit = this.itemsPerPage): Observable<T[]> {
+  $all(filter: FilterModel = null, page = null, sort = null, limit = this.itemsPerPage): Observable<T[]> {
 
     let endpoint = this.urlEndpoint + '?'
 

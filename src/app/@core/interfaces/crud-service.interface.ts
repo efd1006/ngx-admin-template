@@ -7,7 +7,7 @@ export interface CrudServiceInterface<T> {
   totalPageCount: number
   itemsPerPage: number
 
-  $all: (filter?: FilterModel, page?: number, limit?: number) => Observable<T[]>
+  $all: (filter?: FilterModel, page?: number, sort?: string, limit?: number) => Observable<T[]>
   create: (item: T) => Observable<T>
   get: (uuid: string, filter?: FilterModel) => Observable<T>
   update: (uuid: string, item: T) => Observable<T>
